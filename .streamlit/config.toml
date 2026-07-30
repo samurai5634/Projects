@@ -1,0 +1,6 @@
+[theme]
+primaryColor="#E50914"                  # Netflix Red
+backgroundColor="#141414"               # Dark Cinematic Background
+secondaryBackgroundColor="#1F1F1F"      # Card/Sidebar Background
+textColor="#FFFFFF"                     # Pure White Text
+font="sans serif"

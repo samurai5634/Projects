@@ -1,0 +1,11 @@
+pandas
+seaborn
+torch
+numpy
+matplotlib
+scipy
+scikit-learn
+jupyter 
+ipykernel
+streamlit 
+optuna

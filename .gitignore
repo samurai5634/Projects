@@ -1,0 +1,81 @@
+# ==========================================
+# 1. Environments & Dependencies
+# ==========================================
+venv/
+.venv/
+env/
+ENV/
+env.bak/
+venv.bak/
+bin/
+include/
+lib/
+share/
+
+# ==========================================
+# 2. Python Caches & Build Files
+# ==========================================
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+.coverage
+htmlcov/
+*.egg-info/
+.eggs/
+build/
+dist/
+
+# ==========================================
+# 3. Datasets & Preprocessed Artifacts
+# ==========================================
+# Exclude raw MovieLens data directory
+ml-1m/
+ml-1m.zip
+
+# Exclude preprocessed pickle data artifacts
+data/
+*.pkl
+*.dat
+
+# ==========================================
+# 4. Neural Network Weights & Model Checkpoints
+# ==========================================
+checkpoints/
+*.pth
+*.pt
+*.onnx
+
+# ==========================================
+# 5. Optuna & Hyperparameter Tuning
+# ==========================================
+optuna.db
+*.db
+*.sqlite3
+
+# ==========================================
+# 6. Streamlit & Secrets Configurations
+# ==========================================
+# Ignore secret files (keep local theme config.toml if you want to commit it)
+.streamlit/secrets.toml
+
+# ==========================================
+# 7. IDEs, Editors & System Junk
+# ==========================================
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Windows
+Thumbs.db
+ehthumbs.db
+
+# VS Code & PyCharm
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Jupyter Notebook Checkpoints
+.ipynb_checkpoints/
