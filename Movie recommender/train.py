@@ -10,33 +10,6 @@ from dataset import MovieLensDataset
 
 
 # ==========================================
-# 0. Loading data
-# ==========================================
-
-# 1. Load the preprocessed dictionary artifact from disk
-print("Loading preprocessed MovieLens dataset...")
-with open("data/movielens_preprocessed.pkl", "rb") as f:
-    artifacts = pickle.load(f)
-
-# 2. Extract DataFrames and Feature Matrices
-train_ratings = artifacts['train_ratings']
-test_ratings = artifacts['test_ratings']
-user_meta_df = artifacts['user_meta_df']
-item_genre_matrix = artifacts['item_genre_matrix']
-
-
-# 3. Extract Model Initialization Dimensions
-NUM_USERS = artifacts['num_users']     # 6040
-NUM_ITEMS = artifacts['num_items']     # 3706
-NUM_GENRES = artifacts['num_genres']   # 18
-
-print(f"Data successfully loaded!")
-print(f"Train samples: {len(train_ratings):,}, Test users: {len(test_ratings):,}")
-print(f"Users: {NUM_USERS}, Items: {NUM_ITEMS}, Genres: {NUM_GENRES}")
-
-
-
-# ==========================================
 # 1. Reproducibility & Setup
 # ==========================================
 def seed_everything(seed=42):
@@ -45,10 +18,6 @@ def seed_everything(seed=42):
     torch.manual_seed(seed)
     if torch.cuda.is_available():
         torch.cuda.manual_seed_all(seed)
-
-seed_everything(42)
-device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-print(f"Executing on device: {device}")
 
 
 # ==========================================
@@ -117,10 +86,39 @@ def main():
     # --- Hyperparameters ---
     
     EPOCHS = 20
-    BATCH_SIZE = 256
-    LR = 0.001
-    FACTOR_NUM = 32
+    BATCH_SIZE = 512
+    LR = 0.008706
+    FACTOR_NUM = 16
     MLP_LAYERS = [64, 32, 16]
+
+    # ==========================================
+    # 0. Loading data
+    # ==========================================
+
+    # 1. Load the preprocessed dictionary artifact from disk
+    print("Loading preprocessed MovieLens dataset...")
+    with open("data/movielens_preprocessed.pkl", "rb") as f:
+        artifacts = pickle.load(f)
+
+    # 2. Extract DataFrames and Feature Matrices
+    train_ratings = artifacts['train_ratings']
+    test_ratings = artifacts['test_ratings']
+    user_meta_df = artifacts['user_meta_df']
+    item_genre_matrix = artifacts['item_genre_matrix']
+
+
+    # 3. Extract Model Initialization Dimensions
+    NUM_USERS = artifacts['num_users']     # 6040
+    NUM_ITEMS = artifacts['num_items']     # 3706
+    NUM_GENRES = artifacts['num_genres']   # 18
+
+    print(f"Data successfully loaded!")
+    print(f"Train samples: {len(train_ratings):,}, Test users: {len(test_ratings):,}")
+    print(f"Users: {NUM_USERS}, Items: {NUM_ITEMS}, Genres: {NUM_GENRES}")
+
+    seed_everything(42)
+    device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+    print(f"Executing on device: {device}")
 
     
     print("Building FENCF Model Architecture...")
@@ -133,7 +131,7 @@ def main():
     ).to(device)
 
     criterion = nn.BCELoss()
-    optimizer = torch.optim.Adam(model.parameters(), lr=LR, weight_decay=1e-6)
+    optimizer = torch.optim.Adam(model.parameters(), lr=LR, weight_decay=5.415e-07)
 
     best_loss = float('inf')
     os.makedirs("checkpoints", exist_ok=True)

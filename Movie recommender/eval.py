@@ -27,9 +27,10 @@ def main():
         num_users=NUM_USERS,
         num_items=NUM_ITEMS,
         num_genres=NUM_GENRES,
-        factor_num=32,
+        factor_num=16,
         layers=[64, 32, 16]
     ).to(device)
+
 
     # 3. Load Saved Weights
     checkpoint_path = "checkpoints/best_fencf_model.pth"
@@ -58,4 +59,11 @@ if __name__ == "__main__":
 # ================ EVALUATION RESULTS ================
 # Hit Ratio @ 10 (HR@10):   0.6674
 # NDCG @ 10      (NDCG@10): 0.3853
+# ====================================================
+
+# after hyperparameter tuning
+
+# ================ EVALUATION RESULTS ================
+# Hit Ratio @ 10 (HR@10):   0.6513
+# NDCG @ 10      (NDCG@10): 0.3811
 # ====================================================
